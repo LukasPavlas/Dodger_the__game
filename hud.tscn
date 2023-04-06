@@ -1,0 +1,114 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnlnp0niig32r"]
+
+[ext_resource type="FontFile" uid="uid://cmaisxcjuhijm" path="res://dodge_assets/fonts/Xolonium-Regular.ttf" id="1_1srq4"]
+[ext_resource type="Script" path="res://hud.gd" id="1_r2jbx"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_add88"]
+action = &"start_game"
+
+[sub_resource type="Shortcut" id="Shortcut_6450m"]
+events = [SubResource("InputEventAction_add88")]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_r2jbx")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.0
+offset_right = 23.0
+offset_bottom = 81.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_1srq4")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -81.0
+offset_right = 240.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_1srq4")
+theme_override_font_sizes/font_size = 64
+text = "Dodge the
+Creeps!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButone" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -140.0
+offset_right = 89.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_1srq4")
+theme_override_font_sizes/font_size = 64
+shortcut = SubResource("Shortcut_6450m")
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="HightScore" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 56.0
+
+[node name="Text" type="Label" parent="HightScore"]
+layout_mode = 1
+offset_right = 97.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("1_1srq4")
+text = "Hight score: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Number" type="Label" parent="HightScore"]
+layout_mode = 1
+offset_left = 104.0
+offset_right = 116.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("1_1srq4")
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.384314)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_1srq4")
+text = "by pavlasdev.cz"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="StartButone" to="." method="_on_start_butone_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
